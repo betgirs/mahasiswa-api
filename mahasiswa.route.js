@@ -15,14 +15,12 @@ const mahasiswaModel = mongoose.model("Mahasiswa",MahasiswaSchema);
             message: 'Mahasiswa not found'
           });
         }
-        return res.status(200).json({
-          status: true,
-          data: mahasiswa
+        return res.status(200).json({  
+          mahasiswa
         });
       } else {
         const mahasiswa = await mahasiswaModel.find();
         return res.status(200).json({
-          status: true,
           data: mahasiswa
         });
       }
