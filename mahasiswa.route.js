@@ -16,7 +16,7 @@ const mahasiswaModel = mongoose.model("Mahasiswa",MahasiswaSchema);
           });
         }
         return res.status(200).json({  
-          mahasiswa
+          data: mahasiswa
         });
       } else {
         const mahasiswa = await mahasiswaModel.find();
