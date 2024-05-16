@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const MahasiswaSchema = new mongoose.Schema({
-  id: String, 
+const MahasiswaSchema = new mongoose.Schema({ 
   nrp: {
     type: String,
     unique: true,

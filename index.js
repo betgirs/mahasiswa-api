@@ -8,6 +8,8 @@ const mahasiswaRoute = require("./mahasiswa.route")
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware untuk parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use(bodyParser.json())
