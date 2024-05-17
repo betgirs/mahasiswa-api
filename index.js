@@ -17,16 +17,11 @@ app.use(bodyParser.json())
 Handle alamat / , lalu kirimkan response hello world
 */
 app.get("/", (req, res) => {
-  res.json({ message: "Hello world" });
+  res.json({ 
+    message: "Hello world",
+    note:"Untuk melihat mahasiswa lihat https://mahasiswa-api.vercel.app/mahasiswa"});
 });
 
-/*
-Handle method POST dengan alamat /penjumlahan ,
-lalu kirimkan response hasil penjumlahan
-*/
-app.post('/penjumlahan', (req, res)=> {
-    res.json({result: req.body.a + req.body.b})
-  })
 
 // konek ke database
 mongoose.connect(process.env.DBHOST);
