@@ -8,6 +8,7 @@ const mahasiswaModel = mongoose.model("Mahasiswa",MahasiswaSchema);
 router.get('/', async (req, res) => {
   try {
     const nrp = req.query.nrp; // Mengakses parameter nrp dari URL
+    const id  = req.query.id;// Mengakses parameter id dari URL
 
     if (nrp) { // Jika nrp ada
       const mahasiswa = await mahasiswaModel.find({ nrp });
@@ -19,14 +20,27 @@ router.get('/', async (req, res) => {
       res.status(200).json({ 
         status: true, 
         data: mahasiswa });
-    } else { // Jika nrp tidak ada
+    } else if(id){
+      const mahasiswa = await mahasiswaModel.findById(id);
+      if (!mahasiswa) {
+        return res.status(404).json({ 
+          status: false, 
+          message: 'Mahasiswa not found' });
+      }
+      res.status(200).json({ 
+        status: true, 
+        data: mahasiswa });
+    }
+    else { // Jika nrp tidak ada
       const mahasiswa = await mahasiswaModel.find();
       res.status(200).json({ 
         status: true, 
         data: mahasiswa });
     }
   } catch (error) {
-    res.status(500).json({ status: false, message: error.message });
+    res.status(500).json({ 
+      status: false, 
+      message: error.message });
   }
 });
   
