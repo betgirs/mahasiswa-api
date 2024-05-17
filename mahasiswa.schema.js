@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
-
+const uuid = require('uuid');
 const MahasiswaSchema = new mongoose.Schema({ 
+  id: { 
+    type: String, 
+    required: true, 
+    unique: true, 
+    default: uuid.v4 },
   nrp: {
     type: String,
     unique: true,

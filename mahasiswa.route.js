@@ -2,6 +2,7 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const MahasiswaSchema = require('./mahasiswa.schema');
 
+
 const mahasiswaModel = mongoose.model("Mahasiswa",MahasiswaSchema);
 
   // GET all mahasiswa or mahasiswa by nrp
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
         status: true, 
         data: mahasiswa });
     } else if(id){
-      const mahasiswa = await mahasiswaModel.findById(id);
+      const mahasiswa = await mahasiswaModel.findOne({ id });
       if (!mahasiswa) {
         return res.status(404).json({ 
           status: false, 
@@ -67,8 +68,8 @@ router.get('/', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
       const { id, nrp, nama, email, jurusan } = req.body;
-      const mahasiswa = await mahasiswaModel.findByIdAndUpdate(
-        id,
+      const mahasiswa = await mahasiswaModel.findOneAndUpdate(
+        { id },
         { nrp, nama, email, jurusan },
         { new: true }
       );
@@ -94,7 +95,7 @@ router.put('/', async (req, res) => {
 router.delete('/', async (req, res) => {
     try {
       const { id } = req.query;
-      const mahasiswa = await mahasiswaModel.findByIdAndDelete(id);
+      const mahasiswa = await mahasiswaModel.findOneAndDelete({id});
       if (!mahasiswa) {
         return res.status(404).json({
           status: false,
@@ -112,5 +113,7 @@ router.delete('/', async (req, res) => {
       });
     }
   });
+  
+
 
   module.exports = router;
