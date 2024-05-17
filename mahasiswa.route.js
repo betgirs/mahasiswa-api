@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         status: true, 
         data: mahasiswa });
     } else if(id){
-      const mahasiswa = await mahasiswaModel.findOne({ id });
+      const mahasiswa = await mahasiswaModel.findOne({id});
       if (!mahasiswa) {
         return res.status(404).json({ 
           status: false, 

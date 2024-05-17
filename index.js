@@ -19,7 +19,8 @@ Handle alamat / , lalu kirimkan response hello world
 app.get("/", (req, res) => {
   res.json({ 
     message: "Hello world",
-    note:"Untuk melihat mahasiswa lihat https://mahasiswa-api.vercel.app/mahasiswa"});
+    note:"Untuk melihat daftar mahasiswa cek di : https://mahasiswa-api.vercel.app/mahasiswa",});
+
 });
 
 
