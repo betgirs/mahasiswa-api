@@ -95,7 +95,7 @@ router.put('/', async (req, res) => {
 router.delete('/', async (req, res) => {
     try {
       const { id } = req.query;
-      const mahasiswa = await mahasiswaModel.findOneAndDelete({id});
+      const mahasiswa = await mahasiswaModel.findOneAndDelete({ id });
       if (!mahasiswa) {
         return res.status(404).json({
           status: false,
