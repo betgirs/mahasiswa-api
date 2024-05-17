@@ -46,6 +46,19 @@ router.get('/', async (req, res) => {
       });
     }
   });
+
+  // GET mahasiswa by nrp
+router.get('/:nrp', async (req, res) => {
+  try {
+    const mahasiswa = await mahasiswaModel.findOne({ nrp: req.params.nrp });
+    if (!mahasiswa) {
+      return res.status(404).json({ status: false, message: 'Mahasiswa not found' });
+    }
+    res.status(200).json({ status: true, data: mahasiswa });
+  } catch (error) {
+    res.status(500).json({ status: false, message: error.message });
+  }
+});
   
 
 // Update mahasiswa by ID
